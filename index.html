@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08070a">
+<title>ARCHER — ایجنت برنامه‌نویس هوش مصنوعی</title>
+<meta name="description" content="آرچر (Archer) یک ایجنت برنامه‌نویس هوش مصنوعی است که خودش کد می‌نویسد، اجرا می‌کند و دیباگ می‌کند. ساختهٔ غفور مدیرزاده.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='34' fill='none' stroke='%23ff2d3f' stroke-width='8'/><circle cx='50' cy='50' r='14' fill='%23ff2d3f'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800;900&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<noscript>
+  <style>
+    .boot{display:none !important}
+    .reveal{opacity:1 !important;transform:none !important}
+    .fade-seq>*{opacity:1 !important;transform:none !important}
+  </style>
+</noscript>
+
+<!-- ══════════ BOOT / PRELOADER ══════════ -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__core"></div>
+  <div class="boot__log" id="bootLog">
+    <span>ARCHER KERNEL v3.0 …</span>
+  </div>
+  <div class="boot__bar"><i></i></div>
+</div>
+
+<!-- ══════════ BACKGROUND LAYERS ══════════ -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-scan" aria-hidden="true"></div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="hdr" id="hdr">
+  <a class="hdr__brand" href="#hero" aria-label="ARCHER">
+    <span class="hdr__mark"><i></i></span>
+    <span class="hdr__name">ARCHER</span>
+    <span class="hdr__tag">AI&nbsp;DEV&nbsp;AGENT</span>
+  </a>
+
+  <nav class="nav" id="nav" aria-label="ناوبری اصلی">
+    <a href="#features">قابلیت‌ها</a>
+    <a href="#how">چطور کار می‌کند</a>
+    <a href="#work">نمونه کار</a>
+    <a href="#creator">سازنده</a>
+    <a class="nav__cta" href="#hero">شروع کنید</a>
+  </nav>
+
+  <button class="burger" id="burger" aria-label="منو" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+<!-- ══════════ ۱. HERO ══════════ -->
+<section class="hero" id="hero">
+  <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__badge reveal">
+      <span class="dot"></span>
+      <span class="ltr">SYSTEM ONLINE</span>
+      <span class="sep">/</span>
+      <span>آمادهٔ اجرای دستور</span>
+    </div>
+
+    <h1 class="hero__title reveal" data-delay="1">
+      <span class="hero__title-main" data-text="ARCHER">ARCHER</span>
+      <span class="hero__title-sub">ایجنت برنامه‌نویس هوش مصنوعی</span>
+    </h1>
+
+    <p class="hero__lead reveal" data-delay="2">
+      یک دستور بده، بقیه‌اش با من.
+      <span class="hl">کد می‌نویسم</span>، <span class="hl">اجرا می‌کنم</span>،
+      خطا را می‌خوانم و <span class="hl">خودم دیباگ می‌کنم</span> — تا وقتی که کار واقعاً کار کند.
+    </p>
+
+    <div class="hero__type reveal" data-delay="3">
+      <span class="prompt">&gt;</span>
+      <span id="typer" class="typer" dir="ltr"></span><span class="caret" aria-hidden="true"></span>
+    </div>
+
+    <div class="hero__actions reveal" data-delay="4">
+      <a class="btn btn--primary" href="#features">ببین چه کارهایی می‌کنم <i class="arr">↓</i></a>
+      <a class="btn btn--ghost" href="#work">نمونه کار واقعی</a>
+    </div>
+
+    <ul class="hero__stats reveal" data-delay="5">
+      <li><b class="ltr" data-count="10">0</b><span>قابلیت کلیدی</span></li>
+      <li><b class="ltr" data-count="24">0</b><span>ساعت در دسترس</span></li>
+      <li><b class="ltr" data-count="100">0</b><span>٪ خودکار</span></li>
+      <li><b class="ltr" data-count="0">0</b><span>خطای رهاشده</span></li>
+    </ul>
+  </div>
+
+  <!-- rotating red core -->
+  <div class="core" aria-hidden="true">
+    <div class="core__halo"></div>
+    <div class="core__ring core__ring--1"></div>
+    <div class="core__ring core__ring--2"></div>
+    <div class="core__ring core__ring--3"></div>
+    <div class="core__orbit"><i></i></div>
+    <div class="core__orbit core__orbit--2"><i></i></div>
+    <div class="core__eye">
+      <span class="core__iris"></span>
+      <span class="core__pulse"></span>
+      <span class="core__pulse core__pulse--d"></span>
+    </div>
+    <div class="core__label ltr">CORE</div>
+  </div>
+
+  <a class="scroll-hint" href="#features" aria-label="اسکرول به پایین"><span></span></a>
+</section>
+
+<!-- ══════════ ۲. FEATURES ══════════ -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="kicker ltr">CAPABILITIES</span>
+      <h2 class="sec__title">این آرچر چه بلایی سر کارت می‌آورد</h2>
+      <p class="sec__sub">نه یک چت‌بات که فقط حرف بزند — یک ایجنت که دست به کد می‌شود.</p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card reveal" data-delay="1">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6 3 12l5 6M16 6l5 6-5 6M13 4l-2 16"/></svg>
+        </div>
+        <h3>کدنویسی و دیباگ خودکار</h3>
+        <p>کد را می‌نویسد، اجرا می‌کند، خروجی خطا را می‌خواند و همان‌جا اصلاحش می‌کند. حلقهٔ «بنویس ← اجرا ← تعمیر» تا سبز شدن نتیجه.</p>
+        <span class="card__idx ltr">01</span>
+      </article>
+
+      <article class="card reveal" data-delay="2">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 3 10.5l7 3 3 7L21 3Z"/></svg>
+        </div>
+        <h3>کنترل با تلگرام</h3>
+        <p>دستور را از گوشی در تلگرام می‌فرستی؛ همان لحظه روی باکس اجرا می‌شود. لازم نیست پای کامپیوتر باشی.</p>
+        <span class="card__idx ltr">02</span>
+      </article>
+
+      <article class="card reveal" data-delay="3">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/><circle cx="12" cy="12" r="2.6"/></svg>
+        </div>
+        <h3>حافظهٔ پروژه</h3>
+        <p>هر پروژه را با خلاصه، وضعیت و فهرست فایل‌ها به خاطر می‌سپارد؛ دفعهٔ بعد از صفر شروع نمی‌کند.</p>
+        <span class="card__idx ltr">03</span>
+      </article>
+
+      <article class="card reveal" data-delay="4">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+        </div>
+        <h3>صف کارها</h3>
+        <p>چند وظیفه را پشت سر هم می‌چیند و تک‌تک تمام می‌کند؛ بین کارها گم نمی‌شود و چیزی را جا نمی‌گذارد.</p>
+        <span class="card__idx ltr">04</span>
+      </article>
+
+      <article class="card reveal" data-delay="5">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6v4H4zM14 5h6v4h-6zM9 15h6v4H9zM7 9v3h10V9M12 12v3"/></svg>
+        </div>
+        <h3>حالت برنامه‌ریزی (نقشه)</h3>
+        <p>قبل از کدنویسی، نقشهٔ فاز‌به‌فاز می‌دهد و منتظر تأیید می‌ماند. اول فکر، بعد کلید.</p>
+        <span class="card__idx ltr">05</span>
+      </article>
+
+      <article class="card reveal" data-delay="6">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M6 9v6a3 3 0 0 0 3 3h6M8.6 6H15a3 3 0 0 1 3 3v6"/></svg>
+        </div>
+        <h3>نسخه‌بندی خودکار با گیت</h3>
+        <p>بعد از هر تغییر موفق، کامیت خودکار می‌سازد. هر لحظه می‌شود به عقب برگشت — بدون ترس.</p>
+        <span class="card__idx ltr">06</span>
+      </article>
+
+      <article class="card reveal" data-delay="7">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 7.8 8 9 4.6-1.2 8-4.5 8-9V6l-8-3Z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>
+        </div>
+        <h3>نگهبان سرویس‌ها</h3>
+        <p>سرویس‌ها را زیر نظر دارد؛ اگر کرش کنند دوباره بالا می‌آیند. ربات و سرور همیشه زنده می‌مانند.</p>
+        <span class="card__idx ltr">07</span>
+      </article>
+
+      <article class="card reveal" data-delay="8">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+        </div>
+        <h3>ورودی فایل و عکس</h3>
+        <p>فایل، اسکرین‌شات یا عکس خطا را می‌فرستی؛ می‌خواند، تحلیل می‌کند و بر اساس همان جلو می‌رود.</p>
+        <span class="card__idx ltr">08</span>
+      </article>
+
+      <article class="card reveal" data-delay="9">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15V11M12 15V7M16 15v-5M20 15v-2"/></svg>
+        </div>
+        <h3>گزارش هزینه</h3>
+        <p>هر درخواست چقدر خرج کرده، شفاف گزارش می‌دهد. مصرف توکن و هزینهٔ کارها همیشه جلوی چشمت است.</p>
+        <span class="card__idx ltr">09</span>
+      </article>
+
+      <article class="card reveal" data-delay="10">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M6 8h4M6 11h7"/></svg>
+        </div>
+        <h3>پنل HUD زنده</h3>
+        <p>همه‌چیز روی مانیتور جلوی چشم است: لاگ زنده، وضعیت سرویس‌ها، کارهای در جریان و خروجی لحظه‌ای.</p>
+        <span class="card__idx ltr">10</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ۳. HOW IT WORKS ══════════ -->
+<section class="sec sec--alt" id="how">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="kicker ltr">WORKFLOW</span>
+      <h2 class="sec__title">چطور کار می‌کند</h2>
+      <p class="sec__sub">سه قدم. از دست تو تا خروجی نهایی، بدون واسطه.</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal" data-delay="1">
+        <span class="step__num ltr">01</span>
+        <div class="step__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 3 10.5l7 3 3 7L21 3Z"/></svg>
+        </div>
+        <h3>دستور از تلگرام</h3>
+        <p>پیام می‌دهی: «یک ربات مدیریت گروه بساز». می‌توانی فایل یا عکس هم پیوست کنی.</p>
+        <span class="step__mono ltr">TG → API</span>
+      </li>
+
+      <li class="step reveal" data-delay="2">
+        <span class="step__num ltr">02</span>
+        <div class="step__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></svg>
+        </div>
+        <h3>اجرا روی باکس</h3>
+        <p>روی Android TV box / Termux کد را می‌نویسد، اجرا می‌کند، خطا را می‌خواند و تعمیر می‌کند.</p>
+        <span class="step__mono ltr">TERMUX · PY</span>
+      </li>
+
+      <li class="step reveal" data-delay="3">
+        <span class="step__num ltr">03</span>
+        <div class="step__ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 20h8M12 16.5V20"/><path d="M12 10.5l2-2"/></svg>
+        </div>
+        <h3>نمایش زنده + گزارش صوتی</h3>
+        <p>روی مانیتور زنده می‌بینی چه می‌کند و نتیجه را با صدا هم می‌شنوی. دست‌ها آزاد، چشم‌ها روی نتیجه.</p>
+        <span class="step__mono ltr">HUD · TTS</span>
+      </li>
+    </ol>
+
+    <div class="flowline" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- ══════════ ۴. SHOWCASE ══════════ -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="kicker ltr">CASE STUDY</span>
+      <h2 class="sec__title">یک نمونهٔ واقعی</h2>
+      <p class="sec__sub">ربات مدیریت گروه تلگرام — ساخته‌شده توسط خود آرچر، مستقیم روی باکس.</p>
+    </div>
+
+    <div class="case">
+      <div class="case__info reveal">
+        <h3 class="case__title">ربات مدیریت گروه تلگرام</h3>
+        <p class="case__desc">
+          از ایده تا ربات زنده، بدون اینکه یک خط کد دستی نوشته شود. آرچر ساخت، اجرا کرد،
+          روی خطاها افتاد و خودش از پسشان برآمد.
+        </p>
+        <ul class="case__list">
+          <li>ضد‌اسپم: حذف لینک، تبلیغ و پیام تکراری</li>
+          <li>سکوت / بن / اخطار با دستور ادمین</li>
+          <li>خوش‌آمدگویی خودکار و قوانین گروه</li>
+          <li>ذخیرهٔ داده در JSON و بازگردانی بعد از ری‌استارت</li>
+          <li>مدیریت از راه دور در همان تلگرام</li>
+        </ul>
+        <div class="case__tags">
+          <span class="chip ltr">python-telegram-bot</span>
+          <span class="chip ltr">JSON</span>
+          <span class="chip ltr">watchdog</span>
+          <span class="chip">دوزبانه</span>
+        </div>
+      </div>
+
+      <div class="code reveal" data-delay="2">
+        <div class="code__bar">
+          <span class="code__dots"><i></i><i></i><i></i></span>
+          <span class="code__file ltr">group_guard_bot.py</span>
+          <span class="code__live ltr">● RUNNING</span>
+        </div>
+        <pre dir="ltr"><code id="codeBlock"><span class="ln"> 1</span> <span class="c"># ساختهٔ آرچر — بدون دخالت دست</span>
+<span class="ln"> 2</span> <span class="k">from</span> telegram.ext <span class="k">import</span> Application, filters
+<span class="ln"> 3</span> <span class="k">from</span> guard <span class="k">import</span> AntiSpam, welcome, warn
+<span class="ln"> 4</span>
+<span class="ln"> 5</span> app = Application.<span class="f">builder</span>(token=TOKEN).<span class="f">build</span>()
+<span class="ln"> 6</span> spam = AntiSpam(max_links=<span class="n">2</span>, mute_sec=<span class="n">600</span>)
+<span class="ln"> 7</span>
+<span class="ln"> 8</span> app.<span class="f">add_handler</span>(MessageHandler(filters.ALL, spam.<span class="f">check</span>))
+<span class="ln">9</span> app.<span class="f">add_handler</span>(CommandHandler(<span class="s">"ban"</span>, warn.<span class="f">ban</span>))
+<span class="ln">10</span> app.<span class="f">add_handler</span>(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome))
+<span class="ln">11</span>
+<span class="ln">12</span> <span class="k">if</span> __name__ == <span class="s">"__main__"</span>:
+<span class="ln">13</span>     app.<span class="f">run_polling</span>(drop_pending_updates=<span class="k">True</span>)</code></pre>
+        <div class="code__term">
+          <p dir="ltr"><span class="ok">✔</span> bot started — @archer_guard_bot</p>
+          <p dir="ltr"><span class="ok">✔</span> watchdog registered · autostart on</p>
+          <p dir="ltr"><span class="dim">~ waiting for commands…</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ۵. CREATOR ══════════ -->
+<section class="sec sec--creator" id="creator">
+  <div class="wrap">
+    <div class="creator">
+      <div class="creator__ring" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="creator__body reveal">
+        <span class="kicker ltr">CREATOR</span>
+        <p class="creator__label">سازندهٔ ایجنت آرچر</p>
+        <h2 class="creator__name">غفور مدیرزاده</h2>
+        <p class="creator__role ltr">Ghafoor Modirzadeh&nbsp;·&nbsp;Founder &amp; Builder</p>
+        <p class="creator__text">
+          آرچر را از صفر نوشتم تا ثابت کنم یک ایجنت درست‌وحسابی می‌تواند بنشیند پشت کد،
+          خطا بخورد، بلند شود و کار را تمام کند. این سایت هم یکی از کارهای اوست.
+        </p>
+        <div class="creator__sig ltr">// built by Archer · for Ghafoor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="ftr">
+  <div class="wrap ftr__inner">
+    <div class="ftr__brand">
+      <span class="ftr__name">غفور مدیرزاده</span>
+      <span class="ftr__small">سازندهٔ ایجنت برنامه‌نویس <span class="ltr">ARCHER</span></span>
+    </div>
+    <nav class="ftr__nav" aria-label="لینک‌های فوتر">
+      <a href="#features">قابلیت‌ها</a>
+      <a href="#how">چطور کار می‌کند</a>
+      <a href="#work">نمونه کار</a>
+      <a href="#creator">سازنده</a>
+    </nav>
+    <p class="ftr__copy ltr">ARCHER © <span id="yr">2025</span> — built to run, debug &amp; ship.</p>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="بازگشت به بالا">↑</button>
+
+<script src="js/hero-core.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
